@@ -83,7 +83,7 @@ CKEDITOR.plugins.add('uploadcare', {
                 };
 
                 var successHandler = function(res) {
-                  imageUrl = res.result
+                  imageUrl = res.url
                   if (element) {
                     var widget;
                     if (editor.widgets && (widget = editor.widgets.selected[0])
