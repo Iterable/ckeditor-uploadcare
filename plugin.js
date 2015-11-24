@@ -82,19 +82,8 @@ CKEDITOR.plugins.add('uploadcare', {
                   imageUrl += '-/preview/';
                 };
 
-                jQuery.ajax({
-                  url: 'https://api.uploadcare.com/files/',
-                  method: 'POST',
-                  headers: {
-                    'Authorization': 'Uploadcare.Simple ac462695bc6c892793bb:be59dc72c84b925082b8',
-                    'Accept': 'application/vnd.uploadcare-v0.4+json'
-                  },
-                  data: {
-                    source: this.cdnUrl,
-                    target: 'iterable-harp-media'
-                  }
-                }).success(function(res){
-                  console.log("Success! ", res);
+                var successHandler = function(res) {
+                  console.log("Success >>> ", res);
                   imageUrl = res.result.replace('s3://iterable-harp-media','https://s3.amazonaws.com/iterable-harp-media').trim();
                   console.log("imageUrl is |", imageUrl);
 
@@ -121,8 +110,16 @@ CKEDITOR.plugins.add('uploadcare', {
                       editor.insertHtml('<a href="' + origImg.cdnUrl + '">' + origImg.name + '</a> ', 'unfiltered_html');
                     }
                   }
-                }).error(function(e){
-                  console.log("There was an error uploading to S3 ", e);
+                };
+
+                // Make the request to the iterable endpoint for handling
+                $.ajax({
+                  url: '/images/uploadcare',
+                  method: 'POST',
+                  contentType: 'application/json;charset=utf-8',
+                  dataType: 'json',
+                  data: JSON.stringify({url: this.cdnUrl}),
+                  success: successHandler
                 });
 
               });
