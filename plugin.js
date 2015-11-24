@@ -83,12 +83,8 @@ CKEDITOR.plugins.add('uploadcare', {
                 };
 
                 var successHandler = function(res) {
-                  console.log("Success >>> ", res);
-                  imageUrl = res.result.replace('s3://iterable-harp-media','https://s3.amazonaws.com/iterable-harp-media').trim();
-                  console.log("imageUrl is |", imageUrl);
-
+                  imageUrl = res.result
                   if (element) {
-                    console.log("inside if element");
                     var widget;
                     if (editor.widgets && (widget = editor.widgets.selected[0])
                         && widget.element === element
@@ -102,9 +98,7 @@ CKEDITOR.plugins.add('uploadcare', {
                       element.setAttribute('href', origImg.cdnUrl);
                     }
                   } else {
-                    console.log("inside not if element");
                     if (origImg.isImage) {
-                      console.log("this is an IMAGE!" + imageUrl);
                       editor.insertHtml('<img src="' + imageUrl + '" alt="" /><br>', 'unfiltered_html');
                     } else {
                       editor.insertHtml('<a href="' + origImg.cdnUrl + '">' + origImg.name + '</a> ', 'unfiltered_html');
