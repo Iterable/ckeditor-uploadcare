@@ -50,7 +50,6 @@ CKEDITOR.plugins.add('uploadcare', {
         }
 
         uploadcare.plugin(function(uc) {
-          console.log("running this plugin yo");
           var settings, element, file;
 
           if (element = searchSelectedElement(editor, 'img')) {
