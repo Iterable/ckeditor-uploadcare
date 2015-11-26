@@ -90,11 +90,13 @@ CKEDITOR.plugins.add('uploadcare', {
                     ) {
                       widget.setData('src', imageUrl).setData('height', null)
                     } else if (element.getName() == 'img') {
-                      element.data('cke-saved-src', '');
+                      console.log("widget is ", widget);
+                      console.log("element is ", element);
                       element.setAttribute('src', imageUrl);
+                      element.data('cke-saved-src', imageUrl);
                     } else {
-                      element.data('cke-saved-href', '');
                       element.setAttribute('href', origImg.cdnUrl);
+                      element.data('cke-saved-href', origImg.cdnUrl);
                     }
                   } else {
                     if (origImg.isImage) {
