@@ -81,10 +81,7 @@ CKEDITOR.plugins.add('uploadcare', {
 
                 var successHandler = function(res) {
                   imageUrl = res.url
-                  var scope = angular.element($(".container")).scope();
-                  console.log("applying to scope now once", scope);
                     if (element) {
-                      console.log("element is ", element);
                       var widget;
                       if (editor.widgets && (widget = editor.widgets.selected[0])
                           && widget.element === element
@@ -104,7 +101,6 @@ CKEDITOR.plugins.add('uploadcare', {
                         editor.insertHtml('<a href="' + origImg.cdnUrl + '">' + origImg.name + '</a> ', 'unfiltered_html');
                       }
                     };
-                  scope.$apply();
                 };
 
                 // Make the request to the iterable endpoint for handling
