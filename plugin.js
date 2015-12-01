@@ -83,16 +83,16 @@ CKEDITOR.plugins.add('uploadcare', {
                   imageUrl = res.url
                     if (element) {
                       var widget;
-                      if (editor.widgets && (widget = editor.widgets.selected[0])
-                          && widget.element === element
-                      ) {
+                      if (editor.widgets && (widget = editor.widgets.selected[0]) && widget.element === element) {
                         widget.setData('src', imageUrl).setData('height', null)
                       } else if (element.getName() == 'img') {
                         element.data('cke-saved-src', imageUrl);
                         element.setAttribute('src', imageUrl);
+                        editor.insertHtml(element.$.outerHTML, 'unfiltered_html');
                       } else {
                         element.data('cke-saved-href', origImg.cdnUrl);
                         element.setAttribute('href', origImg.cdnUrl);
+                        editor.insertHtml(element.$.outerHTML, 'unfiltered_html');
                       }
                     } else {
                       if (origImg.isImage) {
@@ -101,6 +101,7 @@ CKEDITOR.plugins.add('uploadcare', {
                         editor.insertHtml('<a href="' + origImg.cdnUrl + '">' + origImg.name + '</a> ', 'unfiltered_html');
                       }
                     };
+
                 };
 
                 // Make the request to the iterable endpoint for handling
