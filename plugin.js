@@ -1,6 +1,6 @@
 // Uploadcare CKeditor plugin
 // Version: 2.1.1
-
+CKEDITOR.addCss('.cke-resize{outline:none !important;}');
 CKEDITOR.plugins.add('uploadcare', {
   hidpi: true,
   icons: 'uploadcare',
