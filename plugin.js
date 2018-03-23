@@ -104,7 +104,7 @@ CKEDITOR.plugins.add('uploadcare', {
                 };
 
                 // Make the request to the iterable endpoint for handling
-                $.ajax({
+                uc.jQuery.ajax({
                   url: '/images/uploadcare',
                   method: 'POST',
                   contentType: 'application/json;charset=utf-8',
