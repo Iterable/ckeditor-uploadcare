@@ -107,8 +107,14 @@ CKEDITOR.plugins.add('uploadcare', {
                 uc.jQuery.ajax({
                   url: '/images/uploadcare',
                   method: 'POST',
-                  contentType: 'application/json;charset=utf-8',
+                  contentType: 'application/json',
                   dataType: 'json',
+                  beforeSend: function (xhr) {
+                    var xsrf = CKEDITOR.tools.getCookie('XSRF-TOKEN');
+                    if (xsrf) {
+                      xhr.setRequestHeader('X-XSRF-TOKEN', xsrf);
+                    }
+                  },
                   data: JSON.stringify({url: this.cdnUrl}),
                   success: successHandler
                 });
