@@ -93,11 +93,7 @@ CKEDITOR.plugins.add('uploadcare', {
                         widget.element === element
                       ) {
                         widget.setData('src', imageUrl).setData('height', null);
-                        editor.extractSelectedHtml();
-                        editor.insertHtml(
-                          element.$.outerHTML,
-                          'unfiltered_html'
-                        );
+                        editor.fire('saveSnapshot');
                       } else if (element.getName() == 'img') {
                         element.data('cke-saved-src', imageUrl);
                         element.setAttribute('src', imageUrl);
